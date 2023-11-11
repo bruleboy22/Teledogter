@@ -9,16 +9,27 @@ import Button from '@mui/material/Button';
 
 export default function SignUp() {
     const [role, setRole] = useState('');
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [address, setAddress] = useState('');
 
     const handleChange = (event) => {
         setRole(event.target.value);
     };
+
+    const handleChangeUsername = (event) => {
+      setUsername(event.target.value);
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log("Form submitted", { role });
     };
 
+
+    console.log('username: ', username);
 
     return (
         <Box
@@ -38,6 +49,8 @@ export default function SignUp() {
                     label="User Name Required"
                     defaultValue="User Name"
                     variant="filled"
+                    value={username}
+                    onChange={handleChangeUsername}
                 />
                 <TextField
                     required
