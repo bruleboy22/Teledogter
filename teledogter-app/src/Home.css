@@ -1,0 +1,30 @@
+
+
+.home-container {
+    text-align: center; /* Centers the content */
+    padding-top: 50px; /* Adds some space at the top */
+    padding-bottom: 50px; /* Adds some space at the bottom */
+  }
+  
+  .home-title {
+    margin-bottom: 30px; /* Adds some space below the title */
+    font-size: 2em; /* Enlarges the title */
+    color: #213547; /* Sets the title color */
+  }
+  
+  .app-image-container {
+    display: block; /* Changed from inline-block to block */
+    margin: 0 auto; /* Ensures no horizontal margin */
+    padding: 0; /* Removes padding */
+    width: 100vw; /* Sets the width to 100% of the viewport width */
+    max-width: 100%; /* Ensures the container does not exceed the width of its parent */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .app-image {
+    width: 100%; /* Adjust the width as needed, could be in px, vw, etc. */
+    height: auto; /* Maintains aspect ratio */
+    object-fit: cover; /* Adjusts the image size to cover the container while maintaining aspect ratio */
+  }

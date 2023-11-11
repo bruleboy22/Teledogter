@@ -1,0 +1,26 @@
+
+.home-container {
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.home-title {
+  margin-bottom: 30px;
+  font-size: 2em;
+  color: #213547;
+}
+
+.app-image-container {
+  display: inline-block;
+  margin: auto;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.app-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
