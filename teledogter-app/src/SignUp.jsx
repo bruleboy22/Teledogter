@@ -15,9 +15,10 @@ export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('');
+  const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [address, setAddress] = useState('');
-  const [name, setName] = useState('');
+  
 
   const handleChange = (setter) => (event) => setter(event.target.value);
 
@@ -103,6 +104,13 @@ export default function SignUp() {
           </Select>
         </FormControl>
         <TextField
+          id="Name"
+          label="Name"
+          variant="filled"
+          value={name}
+          onChange={handleChange(setName)}
+        />
+        <TextField
           id="phone-number"
           label="Phone Number"
           type="tel"
@@ -118,13 +126,6 @@ export default function SignUp() {
           helperText="Please enter your address"
           value={address}
           onChange={handleChange(setAddress)}
-        />
-        <TextField
-          id="Name"
-          label="Name"
-          variant="filled"
-          value={name}
-          onChange={handleChange(setName)}
         />
         <Button 
           type="submit" 
