@@ -7,6 +7,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/create', (req, res) => {
+    console.log('/create', req.body);
     Controllers.userController.createUser(req.body, res)
 })
 
