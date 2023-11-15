@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {
   Box,
@@ -19,8 +20,35 @@ export default function SignUp() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [address, setAddress] = useState('');
   
-
   const handleChange = (setter) => (event) => setter(event.target.value);
+
+
+  const [pets, setPets] = useState([{
+    name: '',
+    species: '',
+    breed: '',
+    birthdate: '',
+  }]);
+
+  const handlePetChange = (index, field) => (event) => {
+    const newPets = [...pets];
+    newPets[index][field] = event.target.value;
+    setPets(newPets);
+  };
+  
+
+  const navigate = useNavigate();
+  
+  const resetForm = () => {
+    setUsername('');
+    setEmail('');
+    setPassword('');
+    setRole('');
+    setName('');
+    setPhoneNumber('');
+    setAddress('');
+    setPets([{ name: '', species: '', breed: '', birthdate: '' }]);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -35,33 +63,38 @@ export default function SignUp() {
         phone: phoneNumber,
         address,
         profile_picture: '',
-      }
+      },
+      pets: pets 
     })
-    .then((response) => console.log(response))
-    .catch((error) => console.log(error));
+    .then((response) => {
+      console.log(response);
+    resetForm(); // Reset form upon successful submission
+      navigate('/login');
+    })
+    .catch((error) => {
+      console.log(error);
     navigate('/');
-  };
+    })
+};
 
   return (
     <Box
       component="form"
       onSubmit={handleSubmit}
       sx={{
-        '& .MuiTextField-root': { 
-          m: 1, 
-          width: '25ch', 
-          bgcolor: '#333333', 
-          color: 'orange', 
-          '& input': { color: 'orange' }, 
-          '& label': { color: 'orange' }, 
-          '& .MuiOutlinedInput-root': { 
-            '& fieldset': { borderColor: 'orange' }, 
-            '&:hover fieldset': { borderColor: 'orange' }, 
-            '&.Mui-focused fieldset': { borderColor: 'orange' } 
-          } 
-        },
-        paddingTop: '64px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center', // Center the form
+        padding: '20px', // Add some padding
+        bgcolor: 'background.paper', // Use a light background
+        boxShadow: 3, // Add some shadow for depth
+        borderRadius: '8px', // Rounded corners
+        maxWidth: '500px', // Maximum width
+        margin: 'auto', // Center in the page
+        marginTop: '80px' // Adjust top margin to push down from navbar
       }}
+       
+    
       noValidate
       autoComplete="off"
     >
@@ -128,6 +161,34 @@ export default function SignUp() {
           value={address}
           onChange={handleChange(setAddress)}
         />
+        <Box>
+  <TextField
+    label="Pet Name"
+    variant="filled"
+    value={pets[0].name}
+    onChange={handlePetChange(0, 'name')}
+  />
+  <TextField
+    label="Species"
+    variant="filled"
+    value={pets[0].species}
+    onChange={handlePetChange(0, 'species')}
+  />
+  <TextField
+    label="Breed"
+    variant="filled"
+    value={pets[0].breed}
+    onChange={handlePetChange(0, 'breed')}
+  />
+  <TextField
+    label="Birthdate"
+    type="date"
+    variant="filled"
+    InputLabelProps={{ shrink: true }}
+    value={pets[0].birthdate}
+    onChange={handlePetChange(0, 'birthdate')}
+  />
+</Box>
         <Button 
           type="submit" 
           variant="contained" 

@@ -8,7 +8,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 
 const drawerWidth = 240;
-const navItems = ['Home', 'SignUp', 'Appointment', 'Login', 'Post'];
+const navItems = ['Home', 'Login', 'SignUp', 'Appointment',];
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',

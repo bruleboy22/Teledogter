@@ -38,7 +38,7 @@ export default function Login({ setToken }) {
   };
 
   const handleSignUpClick = () => {
-    navigate('/SignUp'); // Redirect to SignUp page
+    navigate('/signup'); // Redirect to SignUp page
   }
 
   return(

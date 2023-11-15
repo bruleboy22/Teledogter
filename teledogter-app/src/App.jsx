@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Navigate, Route } from 'react-router-dom';
 import './App.css';
 import Navbar from './Navbar';
 import Login from './Login';
@@ -9,12 +9,9 @@ import Appointment from './Appointment'
 import useToken from './useToken';
 import Logout from './Logout';
 
+
 function App() {
-  const { token, setToken, logout } = useToken();
-console.log({token})
-  if (!token) {
-    return <Login setToken={setToken} />;
-  }
+  const { token, setToken } = useToken();
 
   return (
     <div className="wrapper">
@@ -22,7 +19,9 @@ console.log({token})
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/appointment" element={<Appointment />} />
+        <Route path="/appointment" element={token ? <Appointment /> : <Navigate to="/login" />} />
+        <Route path="/login" element={!token ? <Login setToken={setToken} /> : <Navigate to="/" />} />
+        {/* Add more routes as needed */}
       </Routes>
     </div>
   );
