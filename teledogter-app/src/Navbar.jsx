@@ -1,13 +1,14 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import { styled, alpha } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
+import {
+  AppBar, Box, Toolbar, IconButton, Typography, InputBase,
+  Menu, MenuItem
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
+
+const drawerWidth = 240;
+const navItems = ['Home', 'SignUp', 'Appointment', 'Login', 'Post'];
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -38,7 +39,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
@@ -52,39 +52,75 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Navbar() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed" sx={{ backgroundColor: '#333333' }}>
-      <Toolbar sx={{ justifyContent: 'space-between' }}>
+        <Toolbar sx={{ justifyContent: 'space-between' }}>
           <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
+            onClick={handleClick}
           >
             <MenuIcon />
           </IconButton>
+          <Menu
+            id="menu-appbar"
+            anchorEl={anchorEl}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'left',
+            }}
+            open={open}
+            onClose={handleClose}
+            sx={{ '.MuiPaper-root': { backgroundColor: '#333333' } }}
+          >
+            {navItems.map((item, index) => (
+              <MenuItem
+                key={index}
+                onClick={handleClose}
+                sx={{ color: 'orange' }}
+                component={Link}
+                to={item === 'Home' ? '/' : `/${item}`}
+              >
+                {item}
+              </MenuItem>
+            ))}
+          </Menu>
+
           <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' }, 
-            color: 'orange',
-            fontFamily: '"News Cycle", sans-serif',
-          }}
+            sx={{
+              flexGrow: 1,
+              display: { xs: 'none', sm: 'block' },
+              color: 'orange',
+              fontFamily: '"News Cycle", sans-serif',
+              fontSize: '5.0em',
+              marginLeft: '-65px'
+            }}
           >
             Teledogter
           </Typography>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Speak to a Dogter"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
         </Toolbar>
       </AppBar>
     </Box>

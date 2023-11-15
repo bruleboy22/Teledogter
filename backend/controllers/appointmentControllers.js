@@ -13,7 +13,7 @@ const getAppointments = (req, res) => {
 const createAppointment = (req, res) => {
     const data = req.body;
     console.log(data);
-    new Models.Appointments(data)
+    Models.Appointments(data)
         .save()
         .then(data => res.send({ result: 200, data: data }))
         .catch(err => {

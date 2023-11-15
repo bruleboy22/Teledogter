@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-    userName: { type: String, trim: true, required: true },
+    userName: { type: String, trim: true, required: true, unique: true },
     emailId: { type: String, trim: true, required: true, unique: true },
-    password: { type: String },
+    password: { type: String, required: true },
     role: { type: String }, // pet owner or veterinarian
     profile: {
         name: String,
@@ -21,8 +21,6 @@ const userSchema = new Schema({
             // Additional pet-specific fields
         }
     ],
-    createdAt: { type: Date, default: Date.now },
-    updatedAt: { type: Date, default: Date.now }
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model("User", userSchema);

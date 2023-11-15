@@ -2,21 +2,30 @@ let express = require("express");
 let router = express.Router();
 let Controllers = require("../controllers");
 
+
 router.get('/', (req, res) => {
-    Controllers.userController.getUsers(res);
-})
+    Controllers.getUsers(res);
+});
 
 router.post('/create', (req, res) => {
-    console.log('/create', req.body);
     Controllers.userController.createUser(req.body, res)
-})
+});
+
 
 router.put('/:id', (req, res) => {
-    Controllers.userController.updateUser(req, res)
-})
+    req.body.id = req.params.id;
+    Controllers.updateUser(req, res);
+});
+
 
 router.delete('/:id', (req, res) => {
-    Controllers.userController.deleteUser(req, res)
-})
+    Controllers.deleteUser(req, res);
+});
+
+
+router.post('/login', (req, res) => {
+
+    Controllers.userController.loginUser(req.body, res);
+});
 
 module.exports = router;
