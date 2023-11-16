@@ -12,15 +12,16 @@ const getAppointments = (req, res) => {
 
 const createAppointment = (req, res) => {
     const data = req.body;
-    console.log(data);
+    console.log(data); // This should now log the correct data from the request
     Models.Appointments(data)
-        .save()
-        .then(data => res.send({ result: 200, data: data }))
-        .catch(err => {
-            console.log(err);
-            res.send({ result: 500, error: err.message });
-        });
-};
+      .save()
+      .then(data => res.send({ result: 200, data: data }))
+      .catch(err => {
+        console.error(err);
+        res.send({ result: 500, error: err.message });
+      });
+  };
+  
 
 const updateAppointment = (req, res) => {
     console.log(req.body);

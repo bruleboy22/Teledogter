@@ -2,7 +2,8 @@ import React, { useState, useRef } from 'react';
 import axios from 'axios';
 
 function Appointment() {
-  const [user, setUser] = useState('');
+  const [userName, setUserName] = useState('');
+  const [patientName, setPatientName] = useState('');
   const [date, setDate] = useState('');
   const [description, setDescription] = useState('');
 
@@ -18,11 +19,15 @@ function Appointment() {
     e.preventDefault();
 
     try {
+      console.log({ userName, date, description }); // Add this line before the axios call
+
       const response = await axios.post('http://localhost:8080/api/appointments/create', {
-        user,
-        date,
-        description
-      });
+  userName,
+  appointment_date: date,
+  reason_for_visit: description,
+  patientName,
+});
+
 
       console.log(response.data);
     } catch (error) {
@@ -58,11 +63,20 @@ function Appointment() {
       <div ref={formRef} style={{ marginTop: '40px', padding: '20px', backgroundColor: 'white', borderRadius: '10px' }}> {/* Add visual separation */}
         <form onSubmit={handleSubmit} style={{ color: '#333333' }}>{/* Adjust form styles */}
         <div style={{ marginBottom: '10px' }}>
-          <label>User ID</label>
+          <label>Owner Name</label>
           <input
             type="text"
-            value={user}
-            onChange={(e) => setUser(e.target.value)}
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+            style={{ width: '100%', padding: '10px', margin: '5px 0' }}
+          />
+        </div>
+        <div style={{ marginBottom: '10px' }}>
+          <label>Patient Name</label>
+          <input
+            type="text"
+            value={patientName}
+            onChange={(e) => setPatientName(e.target.value)}
             style={{ width: '100%', padding: '10px', margin: '5px 0' }}
           />
         </div>
@@ -76,7 +90,7 @@ function Appointment() {
           />
         </div>
         <div style={{ marginBottom: '10px' }}>
-          <label>Description</label>
+          <label>Reason for Visit</label>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}

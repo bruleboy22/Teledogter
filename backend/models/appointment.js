@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const appointmentSchema = new Schema({
-    user_id: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
+    userName: {
+        type: String,
+        required: true
     },
     veterinarian_id: {
         type: Schema.Types.ObjectId,
@@ -12,12 +12,16 @@ const appointmentSchema = new Schema({
     },
     appointment_date: {
         type: Date,
-        required: null
-    },
-    reason_for_visit: {
+        required: true // Updated
+      },
+      patientName: {
         type: String,
-        required: null
+        required: true
     },
+      reason_for_visit: {
+        type: String,
+        required: true // Updated
+      },
     notes: {
         type: String
     },

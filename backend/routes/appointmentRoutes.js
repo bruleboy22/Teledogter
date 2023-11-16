@@ -7,8 +7,9 @@ router.get('/', (req, res) => {
 });
 
 router.post('/create', (req, res) => {
-    Controllers.appointmentController.createAppointment(req.body, res);
-});
+    Controllers.appointmentController.createAppointment(req, res);
+  });
+  
 
 router.put('/:id', (req, res) => {
     Controllers.appointmentController.updateAppointment(req, res);
