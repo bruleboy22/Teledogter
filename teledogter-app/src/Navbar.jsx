@@ -8,7 +8,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 
 const drawerWidth = 240;
-const navItems = ['Home', 'Login', 'SignUp', 'Appointment',];
+const navItems = ['Home', 'Login', 'Logout','SignUp', 'Appointment', 'Teledogter', ];
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -94,17 +94,19 @@ export default function Navbar() {
             sx={{ '.MuiPaper-root': { backgroundColor: '#333333' } }}
           >
             {navItems.map((item, index) => (
-              <MenuItem
-                key={index}
-                onClick={handleClose}
-                sx={{ color: 'orange' }}
-                component={Link}
-                to={item === 'Home' ? '/' : `/${item}`}
-              >
-                {item}
-              </MenuItem>
-            ))}
-          </Menu>
+          <MenuItem
+            key={index}
+            onClick={handleClose}
+            sx={{ color: 'orange' }}
+            component={Link}
+            to={item === 'Home' ? '/' : item === 'Teledogter' ? '/video' : `/${item}`}
+          >
+            {item}
+          </MenuItem>
+        ))}
+      </Menu>
+
+        
 
           <Typography
             variant="h6"
@@ -115,7 +117,7 @@ export default function Navbar() {
               display: { xs: 'none', sm: 'block' },
               color: 'orange',
               fontFamily: '"News Cycle", sans-serif',
-              fontSize: '5.0em',
+              fontSize: '2.5em',
               marginLeft: '-65px'
             }}
           >

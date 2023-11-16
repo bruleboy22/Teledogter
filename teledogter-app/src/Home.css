@@ -28,3 +28,42 @@
     height: auto; /* Maintains aspect ratio */
     object-fit: cover; /* Adjusts the image size to cover the container while maintaining aspect ratio */
   }
+
+  .teledogter-booking-button {
+    background-color: orange;
+    color: #333333;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+    .home-container {
+      text-align: center;
+      padding-top: 50px;
+      padding-bottom: 50px;
+  }
+  
+  .home-title {
+      margin-bottom: 30px;
+      font-size: 2em;
+      color: #213547;
+  }
+  
+  .image-button-container {
+      position: relative;
+      display: inline-block; /* Wraps around the image */
+  }
+  
+  .app-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+  }
+  
+
+  
+  .video-icon {
+      margin-left: 10px;
+  }}
