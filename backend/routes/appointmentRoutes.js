@@ -3,7 +3,7 @@ let router = express.Router();
 let Controllers = require("../controllers");
 
 router.get('/', (req, res) => {
-    Controllers.appointmentController.getAppointments(res);
+    Controllers.appointmentController.getAppointments(req.body, res);
 });
 
 router.post('/create', (req, res) => {

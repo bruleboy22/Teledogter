@@ -6,7 +6,7 @@ function Home() {
   let navigate = useNavigate();
 
   const navigateToAppointment = () => {
-    navigate('/appointment'); // Replace with your actual route
+    navigate('/appointment');
   };
 
   return (

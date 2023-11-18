@@ -13,11 +13,7 @@ app.use(morgan('tiny'));
 app.use(express.json());
 app.use('/api/users', userRoutes);
 app.use('/api/appointments', appointmentRoutes);
-//app.use('/login', (req, res) => {
-    //res.send({
-      //token: 'test123'
-    //});
-  //});
+
 
 app.get("/", (req, res) => {
     res.json({ message: "Welcome to my MongoDB application." });

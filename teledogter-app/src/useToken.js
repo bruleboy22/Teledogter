@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 function safeJSONParse(str) {
-  if (str === undefined || str === null || str === '') {
-    console.log("Token string is undefined or null.");
+  if (!str) {
+    console.log("Token string is empty.");
     return null;
   }
 
@@ -23,20 +23,21 @@ export default function useToken() {
 
   const [token, setToken] = useState(getToken());
 
-  const saveToken = userToken => {
-    localStorage.setItem('token', JSON.stringify(userToken));
-    setToken(userToken.token);
+  const saveToken = (userToken) => {
+    
+    localStorage.setItem('token', JSON.stringify({ token: userToken }));
+    setToken(userToken);
   };
 
-  // New function to handle logout
   const logout = () => {
-    localStorage.removeItem('token'); // Remove the token from localStorage
-    setToken(null); // Reset the token state
+    localStorage.removeItem('token');
+    setToken(null);
   };
 
   return {
     setToken: saveToken,
     token,
-    logout // Include the logout function in the return statement
+    logout,
   };
 }
+

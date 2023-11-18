@@ -9,17 +9,17 @@ import Appointment from './Appointment';
 import useToken from './useToken';
 import Video from './Video';
 import Logout from './Logout';
+import UpcomingAppointments from './UpcomingAppointments';
 
 
 function App() {
-  const { token, setToken } = useToken();
+  const { token, setToken, logout } = useToken();
   const navigate = useNavigate();
 
-  const logout = () => {
-    console.log('Logging out');
-    setToken(null);
+  const logoutUser = () => {
+    logout();
     navigate('/login');
-  };
+  }
 
   return (
     <div className="wrapper">
@@ -30,7 +30,9 @@ function App() {
         <Route path="/appointment" element={token ? <Appointment /> : <Navigate to="/login" />} />
         <Route path="/login" element={!token ? <Login setToken={setToken} /> : <Navigate to="/" />} />
         <Route path="/video" element={token ? <Video /> : <Navigate to="/login" />} />
-        <Route path="/logout" element={<Logout />} />
+        <Route path="/logout" element={<Logout logout={logoutUser}/>} />
+        <Route path="/upcomingappointments" element={<UpcomingAppointments />} />
+
       </Routes>
     </div>
   );

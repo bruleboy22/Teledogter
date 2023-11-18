@@ -2,6 +2,7 @@
 const Models = require('../models');
 
 const getAppointments = (req, res) => {
+    const data = req.body;
     Models.Appointments.find({})
         .then(data => res.send({ result: 200, data: data }))
         .catch(err => {

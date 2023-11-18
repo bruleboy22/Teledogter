@@ -50,32 +50,32 @@ export default function SignUp() {
     setPets([{ name: '', species: '', breed: '', birthdate: '' }]);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
-    axios.post('http://localhost:8080/api/users/create', {
-      userName: username,
-      emailId: email,
-      password,
-      role,
-      profile: {
-        name,
-        phone: phoneNumber,
-        address,
-        profile_picture: '',
-      },
-      pets: pets 
-    })
-    .then((response) => {
-      console.log(response);
-    resetForm(); // Reset form upon successful submission
+  
+    try {
+      const response = await axios.post('http://localhost:8080/api/users/create', {
+        userName: username,
+        emailId: email,
+        password,
+        role,
+        profile: {
+          name,
+          phone: phoneNumber,
+          address,
+          profile_picture: '',
+        },
+        pets: pets 
+      });
+  
+      console.log('Response data:', response.data);
+      resetForm();
       navigate('/login');
-    })
-    .catch((error) => {
-      console.log(error);
-    navigate('/');
-    })
-};
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+  
 
   return (
     <Box
@@ -84,14 +84,14 @@ export default function SignUp() {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center', // Center the form
-        padding: '20px', // Add some padding
-        bgcolor: 'background.paper', // Use a light background
-        boxShadow: 3, // Add some shadow for depth
-        borderRadius: '8px', // Rounded corners
-        maxWidth: '500px', // Maximum width
-        margin: 'auto', // Center in the page
-        marginTop: '80px' // Adjust top margin to push down from navbar
+        alignItems: 'center',
+        padding: '20px',
+        bgcolor: 'background.paper',
+        boxShadow: 3,
+        borderRadius: '8px',
+        maxWidth: '500px',
+        margin: 'auto',
+        marginTop: '80px'
       }}
        
     
@@ -162,33 +162,33 @@ export default function SignUp() {
           onChange={handleChange(setAddress)}
         />
         <Box>
-  <TextField
-    label="Pet Name"
-    variant="filled"
-    value={pets[0].name}
-    onChange={handlePetChange(0, 'name')}
-  />
-  <TextField
-    label="Species"
-    variant="filled"
-    value={pets[0].species}
-    onChange={handlePetChange(0, 'species')}
-  />
-  <TextField
-    label="Breed"
-    variant="filled"
-    value={pets[0].breed}
-    onChange={handlePetChange(0, 'breed')}
-  />
-  <TextField
-    label="Birthdate"
-    type="date"
-    variant="filled"
-    InputLabelProps={{ shrink: true }}
-    value={pets[0].birthdate}
-    onChange={handlePetChange(0, 'birthdate')}
-  />
-</Box>
+        <TextField
+          label="Pet Name"
+          variant="filled"
+          value={pets[0].name}
+          onChange={handlePetChange(0, 'name')}
+        />
+        <TextField
+          label="Species"
+          variant="filled"
+          value={pets[0].species}
+          onChange={handlePetChange(0, 'species')}
+        />
+        <TextField
+          label="Breed"
+          variant="filled"
+          value={pets[0].breed}
+          onChange={handlePetChange(0, 'breed')}
+        />
+        <TextField
+          label="Birthdate"
+          type="date"
+          variant="filled"
+          InputLabelProps={{ shrink: true }}
+          value={pets[0].birthdate}
+          onChange={handlePetChange(0, 'birthdate')}
+        />
+        </Box>
         <Button 
           type="submit" 
           variant="contained" 

@@ -29,16 +29,17 @@ export default function Login({ setToken }) {
     const response = await loginUser({ userName, password });
   
     if (response && response.token) {
-      setToken(response);
+      console.log(response)
+      setToken(response.token);
       navigate('/');
     } else {
-      // Handle login failure, e.g., show an error message
+      
       console.error("Login failed. Either username or password is incorrect.");
     }
   };
 
   const handleSignUpClick = () => {
-    navigate('/signup'); // Redirect to SignUp page
+    navigate('/signup');
   }
 
   return(

@@ -9,8 +9,8 @@ const Video = () => {
   const [videoCall, setVideoCall] = useState(true);
   const rtcProps = {
     appId: '0e13efe68b43494a8cb3ce2c67f63665',
-    channel: 'Teledogter', // your Agora channel name
-    token: '007eJxTYDD9+26jaVpe/FJRRvupO0MnzV1zmDH/9vkv3Ibiq8ovP+JVYDBINTROTUs1s0gyMTaxNEm0SE4yTk41SjYzTzMzNjMzdZ8amtoQyMiQ/lOSiZEBAkF8LoaQ1JzUlPz0ktQiBgYAFuohlw==', // use null or skip if using the app in testing mode
+    channel: 'Teledogter',
+    token: '007eJxTYNDQZfZeZduonbto3cKnzusC415ox8zw/3/i6P/DLhNfK9xVYDBINTROTUs1s0gyMTaxNEm0SE4yTk41SjYzTzMzNjMzjW8OT20IZGTwFktlZmSAQBCfiyEkNSc1JT+9JLWIgQEAIOghrw==', // use null or skip if using the app in testing mode
   };
   const { ready, tracks } = createMicrophoneAndCameraTracks();
   const client = createClient(config);
@@ -19,7 +19,6 @@ const Video = () => {
     EndCall: () => setVideoCall(false),
   };
 
-  // Define your custom CSS styles here
   const customStyles = {
     container: {
       display: 'flex',
@@ -29,9 +28,7 @@ const Video = () => {
     videoPlayer: {
       height: '100%',
       width: '100%',
-      // Add more video player styles here
     },
-    // Add more custom styles as needed
   };
 
   return (
