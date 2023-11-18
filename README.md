@@ -3,6 +3,8 @@
 Introduction
 Teledogter is a modern veterinary telemedicine web application designed to bridge the gap between pet owners and veterinary services. With a focus on convenience and accessibility, Teledogter allows pet owners to schedule appointments, consult with veterinarians, and manage pet health online.
 
+![image](https://github.com/bruleboy22/Teledogter/assets/135775265/eabed047-1f1a-4f0d-b457-9851d8377f0d)
+
 # Features
 - Appointment Scheduling: Book and manage appointments with ease.
 - Virtual Consultations: Engage in video calls with veterinarians for remote consultations.
